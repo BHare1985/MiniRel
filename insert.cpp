@@ -66,6 +66,9 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 
 	Status status;
 	AttrDesc *attrs;
+	Record record;
+	RID rid;
+	
 	int real_attrCnt = 0;
 	int record_size = 0;
 
@@ -96,6 +99,16 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 		printf("location: %d \t %d \t %d \t %d\n", record_mem, record_location, attrs[i].attrOffset, attrs[i].attrLen);
 		memcpy(record_location, attrList[i].attrValue, attrs[i].attrLen);
 	}
+	
+	record.data = record_mem;
+	record.length = record_size;
 
+    HeapFile heap(relation, status);
+    if(status != OK) return status;
+    
+	if ((status = heap.insertRecord(record, rid)) != OK) {
+		return status;
+	}
+	
 	return OK;
 }
