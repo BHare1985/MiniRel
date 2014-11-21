@@ -2,6 +2,11 @@
 #include "query.h"
 #include "index.h"
 
+#include <stdio.h>
+#include <string.h>
+#include "utility.h"
+
+
 /*
  * Inserts a record into the specified relation
  *
@@ -60,84 +65,74 @@ Status Updates::Insert(const string& relation,      // Name of the relation
                        const attrInfo attrList[])   // Value of attributes specified in INSERT statement
 {
 
-  Status status;
-  RelDesc rd;
-  AttrDesc *attrs;
-  int attrCnt;
+	Status status;
+	AttrDesc *attrs;
+	int rel_attrCnt;
+
+	// get attribute data
+	if ((status = attrCat->getRelInfo(relation, rel_attrCnt, attrs)) != OK) {
+		return status;
+	}
+
+	// If the relational attr count isn't equal to attr specified
+	if(rel_attrCnt != attrCnt) {
+		return ATTRTYPEMISMATCH;
+	}
+	
 
 /*
-  if (relation.empty())
-    relation = RELCATNAME;
+	// open data file
 
-  // get relation data
-  if ((status = relCat->getInfo(relation, rd)) != OK)
-    return status;
+	HeapFileScan *hfile = new HeapFileScan(relation, status);
+	if (!hfile)
+	return INSUFMEM;
+	if (status != OK)
+	return status;
+
+	// cout << "Relation name: " << relation << endl << endl;
+
+	int i;
+	for(i = 0; i < attrCnt; i++) {
+	printf("%-*.*s%c ", attrWidth[i], attrWidth[i],
+	   attrs[i].attrName, (attrs[i].indexed ? '*' : ' '));
+	}
+	printf("\n");
+
+	for(i = 0; i < attrCnt; i++) {
+	for(int j = 0; j < attrWidth[i]; j++)
+	  putchar('-');
+	printf("  ");
+	}
+	printf("\n");
+
+	if ((status = hfile->startScan(0, 0, INTEGER, NULL, EQ)) != OK)
+	return status;
+
+	Record rec;
+	RID rid;
+
+	int records = 0;
+	while((status = hfile->scanNext(rid)) == OK) {
+	if ((status = hfile->getRecord(rid, rec)) != OK)
+	  return status;
+	if (records < 100) UT_printRec(attrCnt, attrs, attrWidth, rec);
+	//UT_printRec(attrCnt, attrs, attrWidth, rec);
+	records++;
+	}
+	if (status != FILEEOF)
+	return status;
+
+	cout << endl << "Number of records: " << records << endl;
+
+	delete [] attrWidth;
+	delete [] attrs;
+
+	// close scan and data file
+
+	if ((status = hfile->endScan()) != OK)
+	return status;
+	delete hfile;
 */
 
-  // get attribute data
-  if ((status = attrCat->getRelInfo(relation, attrCnt, attrs)) != OK)
-    return status;
-
-  // compute width of output columns
-
-  int *attrWidth;
-  if ((status = UT_computeWidth(attrCnt, attrs, attrWidth)) != OK)
-    return status;
-
-  // open data file
-
-  HeapFileScan *hfile = new HeapFileScan(relation, status);
-  if (!hfile)
-    return INSUFMEM;
-  if (status != OK)
-    return status;
-
-  // cout << "Relation name: " << relation << endl << endl;
-
-  int i;
-  for(i = 0; i < attrCnt; i++) {
-    printf("%-*.*s%c ", attrWidth[i], attrWidth[i],
-	   attrs[i].attrName, (attrs[i].indexed ? '*' : ' '));
-  }
-  printf("\n");
-
-  for(i = 0; i < attrCnt; i++) {
-    for(int j = 0; j < attrWidth[i]; j++)
-      putchar('-');
-    printf("  ");
-  }
-  printf("\n");
-
-  if ((status = hfile->startScan(0, 0, INTEGER, NULL, EQ)) != OK)
-    return status;
-
-  Record rec;
-  RID rid;
-
-  int records = 0;
-  while((status = hfile->scanNext(rid)) == OK) {
-    if ((status = hfile->getRecord(rid, rec)) != OK)
-      return status;
-	if (records < 100) UT_printRec(attrCnt, attrs, attrWidth, rec);
-    //UT_printRec(attrCnt, attrs, attrWidth, rec);
-    records++;
-  }
-  if (status != FILEEOF)
-    return status;
-
-  cout << endl << "Number of records: " << records << endl;
-
-  delete [] attrWidth;
-  delete [] attrs;
-
-  // close scan and data file
-
-  if ((status = hfile->endScan()) != OK)
-    return status;
-  delete hfile;
-
-  return OK;
-   // Solution Ends
-
-    return OK;
+	return OK;
 }
