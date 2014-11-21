@@ -2,6 +2,8 @@
 #include "query.h"
 #include "index.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 /*
@@ -37,7 +39,7 @@ typedef struct {
 
 This function inserts a tuple with the given attribute values (in attrList) into the specified relation. The
 type attrInfo is defined in the file catalog.h. The value of the attribute is in attrList[I].attrValue, and the
-name of the attribute is in attrList[I].attrame. For the SQL INTEGER (DOUBLE) data type, attrValue
+name of the attribute is in attrList[I].attrName. For the SQL INTEGER (DOUBLE) data type, attrValue
 is a pointer to an integer (double). Similarly for an attribute of type STRING (SQL CHAR type),
 attrValue points to a character string.
 The attrList array may not list the attributes in the same order as they appear in the relation, so you may
@@ -64,24 +66,36 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 
 	Status status;
 	AttrDesc *attrs;
-	int rel_attrCnt = 0;
+	int real_attrCnt = 0;
 	int record_size = 0;
 
 	// get attribute data
-	if ((status = attrCat->getRelInfo(relation, rel_attrCnt, attrs)) != OK) {
+	if ((status = attrCat->getRelInfo(relation, real_attrCnt, attrs)) != OK) {
 		return status;
 	}
 
-	// If the relational attr count isn't equal to attr specified
-	if(rel_attrCnt != attrCnt) {
-		return OK; // Don't know what !OK should be
+	// If the relational attr count isn't equal to attr count specified
+	// This handles if no value is specified and # attr is right
+	if (real_attrCnt != attrCnt) {
+		return ATTRTYPEMISMATCH;
 	}
-	
+
+	// Get the size in bytes the record should be
 	for (int i = 0; i < attrCnt; ++i) {
 		record_size += attrs[i].attrLen;
 	}
 	
-	printf("Record size : %d \n", record_size);
+	//printf("Record size : %d \n", record_size);
+	
+	// Memory allocation for record
+	char* record_mem = (char*) malloc(record_size);
+	if (record_mem == NULL) return INSUFMEM;
+	
+	for (int i = 0; i < attrCnt; ++i) {
+		void* record_location = record_mem + attrs[i].attrOffset;
+		printf("location: %d \t %d \t %d \t %d\n", record_mem, record_location, attrs[i].attrOffset, attrs[i].attrLen);
+		memcpy(record_location, attrList[i].attrValue, attrs[i].attrLen);
+	}
 
 	return OK;
 }
