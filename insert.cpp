@@ -63,7 +63,6 @@ Status Updates::Insert(const string& relation,      // Name of the relation
                        const int attrCnt,           // Number of attributes specified in INSERT statement
                        const attrInfo attrList[])   // Value of attributes specified in INSERT statement
 {
-
 	Status status;
 	AttrDesc *attrs;
 	Record record;
@@ -71,44 +70,53 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 	
 	int real_attrCnt = 0;
 	int record_size = 0;
+	void* record_mem = NULL;
 
-	// get attribute data
-	if ((status = attrCat->getRelInfo(relation, real_attrCnt, attrs)) != OK) {
-		return status;
-	}
+	try {
+		HeapFile heap(relation, status);
+		if(status != OK) throw status;
 
-	// If the relational attr count isn't equal to attr count specified
-	// This handles if no value is specified and # attr is right
-	if (real_attrCnt != attrCnt) {
-		return ATTRTYPEMISMATCH;
-	}
+		
+		// get attribute data
+		status = attrCat->getRelInfo(relation, real_attrCnt, attrs);
+		if(status != OK) throw status;
 
-	// Get the size in bytes the record should be
-	for (int i = 0; i < attrCnt; ++i) {
-		record_size += attrs[i].attrLen;
-	}
-	
-	//printf("Record size : %d \n", record_size);
-	
-	// Memory allocation for record
-	char* record_mem = (char*) malloc(record_size);
-	if (record_mem == NULL) return INSUFMEM;
-	
-	for (int i = 0; i < attrCnt; ++i) {
-		void* record_location = record_mem + attrs[i].attrOffset;
-		printf("location: %d \t %d \t %d \t %d\n", record_mem, record_location, attrs[i].attrOffset, attrs[i].attrLen);
-		memcpy(record_location, attrList[i].attrValue, attrs[i].attrLen);
-	}
-	
-	record.data = record_mem;
-	record.length = record_size;
+		// If the relational attr count isn't equal to attr count specified
+		// This handles if no value is specified and # attr is right
+		if (real_attrCnt != attrCnt) throw ATTRTYPEMISMATCH;
 
-    HeapFile heap(relation, status);
-    if(status != OK) return status;
-    
-	if ((status = heap.insertRecord(record, rid)) != OK) {
-		return status;
+
+		// Get the size in bytes the record should be
+		for (int i = 0; i < attrCnt; ++i) {
+			record_size += attrs[i].attrLen;
+		}
+		
+		//printf("Record size : %d \n", record_size);
+		
+		// Memory allocation for record
+		record_mem = malloc(record_size);
+		if (record_mem == NULL) throw INSUFMEM;
+		
+		for (int i = 0; i < attrCnt; ++i) {
+			void* insert_location = (char*)record_mem + attrs[i].attrOffset;
+			memcpy(insert_location, attrList[i].attrValue, attrs[i].attrLen);
+		}
+		
+		record.data = record_mem;
+		record.length = record_size;
+
+		status = heap.insertRecord(record, rid);
+		if(status != OK) throw status;
+		
+		// no exceptions thrown, so status is OK
+		status = OK;
+	} catch (Status s) {
+		status = s;
 	}
 	
-	return OK;
+	// Free memory
+	if(attrs) delete[] attrs;
+	if(record_mem) free(record_mem);
+	
+	return status;
 }
