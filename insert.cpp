@@ -1,10 +1,7 @@
 #include "catalog.h"
 #include "query.h"
 #include "index.h"
-
 #include <stdio.h>
-#include <string.h>
-#include "utility.h"
 
 
 /*
@@ -67,7 +64,8 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 
 	Status status;
 	AttrDesc *attrs;
-	int rel_attrCnt;
+	int rel_attrCnt = 0;
+	int record_size = 0;
 
 	// get attribute data
 	if ((status = attrCat->getRelInfo(relation, rel_attrCnt, attrs)) != OK) {
@@ -76,63 +74,14 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 
 	// If the relational attr count isn't equal to attr specified
 	if(rel_attrCnt != attrCnt) {
-		return ATTRTYPEMISMATCH;
+		return OK; // Don't know what !OK should be
 	}
 	
-
-/*
-	// open data file
-
-	HeapFileScan *hfile = new HeapFileScan(relation, status);
-	if (!hfile)
-	return INSUFMEM;
-	if (status != OK)
-	return status;
-
-	// cout << "Relation name: " << relation << endl << endl;
-
-	int i;
-	for(i = 0; i < attrCnt; i++) {
-	printf("%-*.*s%c ", attrWidth[i], attrWidth[i],
-	   attrs[i].attrName, (attrs[i].indexed ? '*' : ' '));
+	for (int i = 0; i < attrCnt; ++i) {
+		record_size += attrs[i].attrLen;
 	}
-	printf("\n");
-
-	for(i = 0; i < attrCnt; i++) {
-	for(int j = 0; j < attrWidth[i]; j++)
-	  putchar('-');
-	printf("  ");
-	}
-	printf("\n");
-
-	if ((status = hfile->startScan(0, 0, INTEGER, NULL, EQ)) != OK)
-	return status;
-
-	Record rec;
-	RID rid;
-
-	int records = 0;
-	while((status = hfile->scanNext(rid)) == OK) {
-	if ((status = hfile->getRecord(rid, rec)) != OK)
-	  return status;
-	if (records < 100) UT_printRec(attrCnt, attrs, attrWidth, rec);
-	//UT_printRec(attrCnt, attrs, attrWidth, rec);
-	records++;
-	}
-	if (status != FILEEOF)
-	return status;
-
-	cout << endl << "Number of records: " << records << endl;
-
-	delete [] attrWidth;
-	delete [] attrs;
-
-	// close scan and data file
-
-	if ((status = hfile->endScan()) != OK)
-	return status;
-	delete hfile;
-*/
+	
+	printf("Record size : %d \n", record_size);
 
 	return OK;
 }
