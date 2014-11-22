@@ -38,9 +38,9 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 		for (int i = 0; i < attrCnt; ++i) {
 			record_size += attrs[i].attrLen;
 		}
-
+		
 		// Memory allocation for record
-		record_mem = malloc(record_size);
+		record_mem = operator new(record_size);
 		if (record_mem == NULL) throw INSUFMEM;
 
 		int inserted = 0;
@@ -89,7 +89,7 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 	
 	// Free memory
 	if(attrs) delete[] attrs;
-	if(record_mem) free(record_mem);
+	if(record_mem) operator delete(record_mem);
 	
 	printf("========DEBUG=======\n");
 	Utilities::Print(relation);
