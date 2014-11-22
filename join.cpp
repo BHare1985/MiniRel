@@ -16,18 +16,6 @@
  * 	an error code otherwise
  */
 
-/*
-
-Operators::Join chooses amongst these alternatives based on the join predicate and the index availability
-on the join attributes. The order of preference for the algorithms is first I.L, then SMJ and finally S.L.
-Collectively these algorithms allow evaluating both equi-joins and non-equi-joins. Non-equi-join must be
-processed using S.L. If it is an equi-join and an index exists on either attr1 or attr2, you should use the
-I.L join algorithm. If indices exist on both you can arbitrarily choose which index to use. Finally, if it is
-an equi-join and no indices exist on either of the join attributes, you should use the SMJ algorithm.
-
-*/
-
-
 Status Operators::Join(const string& result,           // Name of the output relation 
                        const int projCnt,              // Number of attributes in the projection
     	               const attrInfo projNames[],     // List of projection attributes
@@ -40,8 +28,8 @@ Status Operators::Join(const string& result,           // Name of the output rel
 	AttrDesc right_attr;
 	AttrDesc* projList = NULL;
 	int record_length;
-	bool conditional;
-	bool equality;
+	bool equi_join;
+	bool indices_exist;
 	
 	try {
 		
@@ -59,9 +47,11 @@ Status Operators::Join(const string& result,           // Name of the output rel
 		   record_length += projList[i].attrLen;
 		}
 
-		// Get attribute info
+		// Get attribute info for left
 		status = attrCat->getInfo(attr1->relName, attr1->attrName, left_attr);
 		if(status != OK) throw status;
+		
+		// Get attribute info for right
 		status = attrCat->getInfo(attr2->relName, attr2->attrName, right_attr);
 		if(status != OK) throw status;
 
@@ -88,12 +78,9 @@ Status Operators::Join(const string& result,           // Name of the output rel
 	}
 	
 	// Free memory
-	if(attrs) delete attrs;
 	if(projList) delete[] projList;
 
 	return status;
-
-	return OK;
 }
 
 // Function to compare two record based on the predicate. Returns 0 if the two attributes 
