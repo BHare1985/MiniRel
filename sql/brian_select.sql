@@ -22,9 +22,9 @@ SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid > 0;
 SELECT * FROM stars WHERE stars.starid = 1;
 SELECT stars.soapid FROM stars WHERE stars.starid = 1;
 SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid = 1;
-SELECT * FROM stars WHERE stars.starid != 1;
-SELECT stars.soapid FROM stars WHERE stars.starid != 1;
-SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid != 1;
+SELECT * FROM stars WHERE stars.starid <> 1;
+SELECT stars.soapid FROM stars WHERE stars.starid <> 1;
+SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid <> 1;
 
 
 CREATE INDEX stars(starid);
@@ -49,9 +49,9 @@ SELECT stars.soapid FROM stars WHERE stars.starid <= 4;
 SELECT * FROM stars WHERE stars.starid = 1;
 SELECT stars.soapid FROM stars WHERE stars.starid = 1;
 SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid = 1;
-SELECT * FROM stars WHERE stars.starid != 1;
-SELECT stars.soapid FROM stars WHERE stars.starid != 1;
-SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid != 1;
+SELECT * FROM stars WHERE stars.starid <> 1;
+SELECT stars.soapid FROM stars WHERE stars.starid <> 1;
+SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid <> 1;
 
 
 DROP TABLE stars;

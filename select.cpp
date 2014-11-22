@@ -66,7 +66,7 @@ Status Operators::Select(const string & result,      // name of the output relat
 	}
 	
 	// Free memory
-	if(attrs) delete[] attrs;
+	if(attrs) delete attrs;
 	if(projList) delete[] projList;
 
 	return status;
