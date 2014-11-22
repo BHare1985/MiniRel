@@ -51,17 +51,21 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 		// Memory allocation for record
 		record_mem = malloc(record_size);
 		if (record_mem == NULL) throw INSUFMEM;
-		
+
+		int inserted = 0;
 		for (int i = 0; i < attrCnt; ++i) {
 			for (int j = 0; j < attrCnt; ++j) {
 				// Ensures in correct order according to attrs
 				if(strcmp(attrList[j].attrName, attrs[i].attrName) == 0) {
 					void* insert_location = (char*)record_mem + attrs[i].attrOffset;
 					memcpy(insert_location, attrList[j].attrValue, attrs[i].attrLen);
+					inserted++;
 					break;
 				}
 			}
 		}
+		
+		if(inserted != attrCnt) throw ATTRNOTFOUND;
 		
 		record.data = record_mem;
 		record.length = record_size;
