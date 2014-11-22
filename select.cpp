@@ -43,7 +43,7 @@ Status Operators::Select(const string & result,      // name of the output relat
 		         const void *attrValue)     // literal value in the predicate
 {
 	Status status;
-	AttrDesc* attrs;
+	AttrDesc* attrs = NULL;
 	AttrDesc* projList = new AttrDesc[projCnt];
 	
 	bool conditional;
@@ -67,19 +67,16 @@ Status Operators::Select(const string & result,      // name of the output relat
 			attrs = new AttrDesc;
 			status = attrCat->getInfo(attr->relName, attr->attrName, *attrs);
 			if(status != OK) throw status;
-			
-			if(attrs->indexed && op == EQ) {
-				status = IndexSelect(result, projCnt, projList, attrs, op, attrValue, record_length);
-				if(status != OK) throw status;
-			} else {
-				status = ScanSelect(result, projCnt, projList, attrs, op, attrValue, record_length);
-				if(status != OK) throw status;
-			}
+		}
+		
+		
+		if(conditional && attrs->indexed && op == EQ) {
+			status = IndexSelect(result, projCnt, projList, attrs, op, attrValue, record_length);
+			if(status != OK) throw status;
 		} else {
 			status = ScanSelect(result, projCnt, projList, attrs, op, attrValue, record_length);
 			if(status != OK) throw status;
 		}
-		
 		
 		// no exceptions thrown, so status is OK
 		status = OK;
