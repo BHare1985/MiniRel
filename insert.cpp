@@ -7,15 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*
-In addition to inserting the tuple, this operator must also update all the hash indices on the relation. Use
-the Index::insertEntry to insert an entry into the index. Look up the system catalogs to find out
-information about the relation and attributes. (See Section “Getting Started” for more details.) 
-
-
-
-*/
-
 Status Updates::Insert(const string& relation,      // Name of the relation
                        const int attrCnt,           // Number of attributes specified in INSERT statement
                        const attrInfo attrList[])   // Value of attributes specified in INSERT statement
