@@ -73,6 +73,23 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 		status = heap.insertRecord(record, rid);
 		if(status != OK) throw status;
 		
+		for (int i = 0; i < attrCnt; ++i) {
+			if(attrs[i].indexed == false) continue;
+			
+			Index idx(
+				relation,
+				attrs[i].attrOffset,
+				attrs[i].attrLen, 
+				static_cast<Datatype>(attrs[i].attrType), // https://piazza.com/class/hzcwxwdhmhv5r0?cid=999
+				NONUNIQUE, // not unique (https://piazza.com/class/hzcwxwdhmhv5r0?cid=995)
+				status
+			);
+			if(status != OK) throw status;
+			
+			status = idx.insertEntry((char*)record.data + attrs[i].attrOffset, rid);
+			if(status != OK) throw status;
+		}
+		
 		// no exceptions thrown, so status is OK
 		status = OK;
 	} catch (Status s) {
