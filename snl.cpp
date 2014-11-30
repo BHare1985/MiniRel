@@ -26,7 +26,6 @@ Status Operators::SNL(const string& result,           // Output relation name
 	void* record_data = NULL;
 	HeapFile* heap_file = NULL;
 	HeapFileScan* heap_scan1 = NULL;
-	HeapFileScan* heap_scan2 = NULL;
 	
 	try {
 
@@ -41,7 +40,7 @@ Status Operators::SNL(const string& result,           // Output relation name
 		while((status = heap_scan1->scanNext(rid1, record1)) == OK) {
 			char *filter = ((char*)record1.data) + attrDesc2.attrOffset;
       
-			heap_scan2 = new HeapFileScan(
+			HeapFileScan* heap_scan2 = new HeapFileScan(
 								attrDesc1.relName,
 								attrDesc1.attrOffset,
 								attrDesc1.attrLen,
@@ -79,11 +78,21 @@ Status Operators::SNL(const string& result,           // Output relation name
 				status = heap_file->insertRecord(joined_record, joined_rid);
 				if(status != OK) throw status;
 				
+				// clear memory
 				operator delete(record_data);
 			}
 			if (status != FILEEOF) throw status;
+			
+			status = heap_scan2->endScan();
+			if(status != OK) throw status;
+			
+			// Clear memory
+			delete heap_scan2;
 		}
 		if (status != FILEEOF) throw status;
+
+		status = heap_scan1->endScan();
+		if(status != OK) throw status;
 		
 		// no exceptions thrown, so status is OK
 		status = OK;
@@ -91,12 +100,10 @@ Status Operators::SNL(const string& result,           // Output relation name
 		if(record_data) operator delete(record_data);
 		status = s;
 	}
-	
+
 	// Free memory
 	if(heap_file) delete heap_file;
 	if(heap_scan1) delete heap_scan1;
-	if(heap_scan2) delete heap_scan2;
 
 	return status;
-
 }

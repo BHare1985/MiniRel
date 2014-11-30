@@ -309,7 +309,7 @@ serial.  ikey.1  filler.2
 8        578     00008 string re  
 
 Number of records: 5149
-Buf Stats: accesses = 7356, disk reads = 561, disk writes = 1038
+Buf Stats: accesses = 7356, disk reads = 1658, disk writes = 1140
 
 206 --> Query:  select da.serial, da.ikey, da.filler from da, db where da.serial = db.serial;
 Algorithm: SM Join
@@ -417,7 +417,7 @@ serial.  ikey.1  filler.2
 99       17676   00099 string re  
 
 Number of records: 101
-Buf Stats: accesses = 524, disk reads = 75, disk writes = 115
+Buf Stats: accesses = 518, disk reads = 75, disk writes = 112
 
 207 --> Query:  create index da (serial);
 208 --> Query:  create index db (serial);
@@ -527,7 +527,7 @@ serial.  ikey.1  filler.2
 99       17676   00099 string re  
 
 Number of records: 101
-Buf Stats: accesses = 299, disk reads = 35, disk writes = 31
+Buf Stats: accesses = 299, disk reads = 42, disk writes = 32
 
 210 --> Query:  drop table da;
 211 --> Query:  drop table db;
