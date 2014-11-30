@@ -1,0 +1,67 @@
+Welcome to Minirel
+1 --> Query:  create table soaps(soapid integer, name char(32), network char(4), rating double);
+2 --> Query:  create index soaps (soapid);
+3 --> Query:  create index soaps (rating);
+4 --> Query:  create index soaps (network);
+5 --> Query:  insert into soaps (soapid, name, network, rating) values (100, Gilmore Girls, CBS, 9.67);
+6 --> Query:  select * from soaps;
+Algorithm: File Scan
+soapid.  name.1           network.2  rating.  
+-------  ---------------  ---------  -------  
+100      Gilmore Girls    CBS        9.67     
+
+Number of records: 1
+Buf Stats: accesses = 53, disk reads = 5, disk writes = 7
+
+7 --> Query:  insert into soaps (network, rating, name, soapid) values (ABC, 3.35, Loving, 101);
+8 --> Query:  select * from soaps;
+Algorithm: File Scan
+soapid.  name.1           network.2  rating.  
+-------  ---------------  ---------  -------  
+100      Gilmore Girls    CBS        9.67     
+101      Loving           ABC        3.35     
+
+Number of records: 2
+Buf Stats: accesses = 54, disk reads = 5, disk writes = 7
+
+9 --> Query:  select * from relcat;
+Algorithm: File Scan
+relname.0        attrcnt  indexcn  
+---------------  -------  -------  
+relcat           3        0        
+attrcat          6        0        
+soaps            4        2        
+Tmp_M2K          3        0        
+
+Number of records: 4
+Buf Stats: accesses = 44, disk reads = 3, disk writes = 6
+
+10 --> Query:  select * from attrcat;
+Algorithm: File Scan
+relname.0        attrname.1       attroff  attrtyp  attrlen  indexed  
+---------------  ---------------  -------  -------  -------  -------  
+relcat           relname          0        2        32       0        
+relcat           attrcnt          32       0        4        0        
+relcat           indexcnt         36       0        4        0        
+attrcat          relname          0        2        32       0        
+attrcat          attrname         32       2        32       0        
+attrcat          attroffset       64       0        4        0        
+attrcat          attrtype         68       0        4        0        
+attrcat          attrlen          72       0        4        0        
+attrcat          indexed          76       0        4        0        
+soaps            name             4        2        32       0        
+soaps            network          36       2        4        0        
+soaps            rating           40       1        8        1        
+soaps            soapid           0        0        4        1        
+Tmp_M2K          relname.0        0        2        32       0        
+Tmp_M2K          attrname.1       32       2        32       0        
+Tmp_M2K          attroffset.2     64       0        4        0        
+Tmp_M2K          attrtype.3       68       0        4        0        
+Tmp_M2K          attrlen.4        72       0        4        0        
+Tmp_M2K          indexed.5        76       0        4        0        
+
+Number of records: 19
+Buf Stats: accesses = 80, disk reads = 4, disk writes = 8
+
+11 --> Query:  drop table soaps;
+12 --> 

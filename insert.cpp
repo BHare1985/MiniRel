@@ -19,7 +19,7 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 	int real_attrCnt = 0;
 	int record_size = 0;
 	void* record_mem = NULL;
-
+	
 	try {
 		HeapFile heap(relation, status);
 		if(status != OK) throw status;
@@ -90,10 +90,6 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 	// Free memory
 	if(attrs) delete[] attrs;
 	if(record_mem) operator delete(record_mem);
-	
-	printf("========DEBUG=======\n");
-	Utilities::Print(relation);
-	printf("========DEBUG=======\n");
 
 	return status;
 }

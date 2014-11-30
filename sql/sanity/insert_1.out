@@ -1,0 +1,64 @@
+Welcome to Minirel
+1 --> Query:  create table stars(starid integer, real_name char(20), plays char(12), soapid integer);
+2 --> Query:  insert into stars(starid, real_name, plays, soapid) values (1, Graham, Laura, Lorelei, 100);
+3 --> Query:  select * from stars;
+Algorithm: File Scan
+starid.  real_name.1      plays.2       soapid.  
+-------  ---------------  ------------  -------  
+1        Graham, Laura    Lorelei       100      
+
+Number of records: 1
+Buf Stats: accesses = 51, disk reads = 5, disk writes = 7
+
+4 --> Query:  insert into stars (real_name, soapid, starid, plays) values (Bonarrigo, Laura, 3, 101, Cassie);
+5 --> Query:  select * from stars;
+Algorithm: File Scan
+starid.  real_name.1      plays.2       soapid.  
+-------  ---------------  ------------  -------  
+1        Graham, Laura    Lorelei       100      
+101      Bonarrigo, Laur  Cassie        3        
+
+Number of records: 2
+Buf Stats: accesses = 52, disk reads = 5, disk writes = 7
+
+6 --> Query:  select * from relcat;
+Algorithm: File Scan
+relname.0        attrcnt  indexcn  
+---------------  -------  -------  
+relcat           3        0        
+attrcat          6        0        
+stars            4        0        
+Tmp_M2K          3        0        
+
+Number of records: 4
+Buf Stats: accesses = 44, disk reads = 3, disk writes = 6
+
+7 --> Query:  select * from attrcat;
+Algorithm: File Scan
+relname.0        attrname.1       attroff  attrtyp  attrlen  indexed  
+---------------  ---------------  -------  -------  -------  -------  
+relcat           relname          0        2        32       0        
+relcat           attrcnt          32       0        4        0        
+relcat           indexcnt         36       0        4        0        
+attrcat          relname          0        2        32       0        
+attrcat          attrname         32       2        32       0        
+attrcat          attroffset       64       0        4        0        
+attrcat          attrtype         68       0        4        0        
+attrcat          attrlen          72       0        4        0        
+attrcat          indexed          76       0        4        0        
+stars            starid           0        0        4        0        
+stars            real_name        4        2        20       0        
+stars            plays            24       2        12       0        
+stars            soapid           36       0        4        0        
+Tmp_M2K          relname.0        0        2        32       0        
+Tmp_M2K          attrname.1       32       2        32       0        
+Tmp_M2K          attroffset.2     64       0        4        0        
+Tmp_M2K          attrtype.3       68       0        4        0        
+Tmp_M2K          attrlen.4        72       0        4        0        
+Tmp_M2K          indexed.5        76       0        4        0        
+
+Number of records: 19
+Buf Stats: accesses = 80, disk reads = 4, disk writes = 8
+
+8 --> Query:  drop table stars;
+9 --> 

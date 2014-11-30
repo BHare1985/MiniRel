@@ -1,0 +1,534 @@
+Welcome to Minirel
+1 --> Query:  create table da (serial integer, ikey integer, filler char(80), dkey double);
+2 --> Query:  create table db (serial integer, ikey integer, filler char(80), dkey double);
+3 --> Query:  insert into da (serial, ikey, filler, dkey) values (0, 11618, 00000 string record, 0.0);
+4 --> Query:  insert into da (serial, ikey, filler, dkey) values (1, 15378, 00001 string record, 1.1);
+5 --> Query:  insert into da (serial, ikey, filler, dkey) values (2, 17233, 00002 string record, 2.2);
+6 --> Query:  insert into da (serial, ikey, filler, dkey) values (3, 19052, 00003 string record, 3.3);
+7 --> Query:  insert into da (serial, ikey, filler, dkey) values (4, 24069, 00004 string record, 4.4);
+8 --> Query:  insert into da (serial, ikey, filler, dkey) values (5, 17188, 00005 string record, 5.5);
+9 --> Query:  insert into da (serial, ikey, filler, dkey) values (6, 28769, 00006 string record, 6.6);
+10 --> Query:  insert into da (serial, ikey, filler, dkey) values (7, 15168, 00007 string record, 7.7);
+11 --> Query:  insert into da (serial, ikey, filler, dkey) values (8, 578, 00008 string record, 8.8);
+12 --> Query:  insert into da (serial, ikey, filler, dkey) values (9, 21055, 00009 string record, 9.9);
+13 --> Query:  insert into da (serial, ikey, filler, dkey) values (10, 7648, 00010 string record, 11.0);
+14 --> Query:  insert into da (serial, ikey, filler, dkey) values (11, 10153, 00011 string record, 12.1);
+15 --> Query:  insert into da (serial, ikey, filler, dkey) values (12, 31851, 00012 string record, 13.2);
+16 --> Query:  insert into da (serial, ikey, filler, dkey) values (13, 25573, 00013 string record, 14.3);
+17 --> Query:  insert into da (serial, ikey, filler, dkey) values (14, 23765, 00014 string record, 15.4);
+18 --> Query:  insert into da (serial, ikey, filler, dkey) values (15, 8758, 00015 string record, 16.5);
+19 --> Query:  insert into da (serial, ikey, filler, dkey) values (16, 18243, 00016 string record, 17.6);
+20 --> Query:  insert into da (serial, ikey, filler, dkey) values (17, 26285, 00017 string record, 18.7);
+21 --> Query:  insert into da (serial, ikey, filler, dkey) values (18, 32157, 00018 string record, 19.8);
+22 --> Query:  insert into da (serial, ikey, filler, dkey) values (19, 21879, 00019 string record, 20.9);
+23 --> Query:  insert into da (serial, ikey, filler, dkey) values (20, 27960, 00020 string record, 22.0);
+24 --> Query:  insert into da (serial, ikey, filler, dkey) values (21, 18894, 00021 string record, 23.1);
+25 --> Query:  insert into da (serial, ikey, filler, dkey) values (22, 3976, 00022 string record, 24.2);
+26 --> Query:  insert into da (serial, ikey, filler, dkey) values (23, 24943, 00023 string record, 25.3);
+27 --> Query:  insert into da (serial, ikey, filler, dkey) values (24, 14177, 00024 string record, 26.4);
+28 --> Query:  insert into da (serial, ikey, filler, dkey) values (25, 18028, 00025 string record, 27.5);
+29 --> Query:  insert into da (serial, ikey, filler, dkey) values (26, 15920, 00026 string record, 28.6);
+30 --> Query:  insert into da (serial, ikey, filler, dkey) values (27, 9143, 00027 string record, 29.7);
+31 --> Query:  insert into da (serial, ikey, filler, dkey) values (28, 20534, 00028 string record, 30.8);
+32 --> Query:  insert into da (serial, ikey, filler, dkey) values (29, 29094, 00029 string record, 31.9);
+33 --> Query:  insert into da (serial, ikey, filler, dkey) values (30, 10397, 00030 string record, 33.0);
+34 --> Query:  insert into da (serial, ikey, filler, dkey) values (31, 22130, 00031 string record, 34.1);
+35 --> Query:  insert into da (serial, ikey, filler, dkey) values (32, 22033, 00032 string record, 35.2);
+36 --> Query:  insert into da (serial, ikey, filler, dkey) values (33, 25436, 00033 string record, 36.3);
+37 --> Query:  insert into da (serial, ikey, filler, dkey) values (34, 3610, 00034 string record, 37.4);
+38 --> Query:  insert into da (serial, ikey, filler, dkey) values (35, 12788, 00035 string record, 38.5);
+39 --> Query:  insert into da (serial, ikey, filler, dkey) values (36, 6504, 00036 string record, 39.6);
+40 --> Query:  insert into da (serial, ikey, filler, dkey) values (37, 32193, 00037 string record, 40.7);
+41 --> Query:  insert into da (serial, ikey, filler, dkey) values (38, 27861, 00038 string record, 41.8);
+42 --> Query:  insert into da (serial, ikey, filler, dkey) values (39, 32049, 00039 string record, 42.9);
+43 --> Query:  insert into da (serial, ikey, filler, dkey) values (40, 65, 00040 string record, 44.0);
+44 --> Query:  insert into da (serial, ikey, filler, dkey) values (41, 8612, 00041 string record, 45.1);
+45 --> Query:  insert into da (serial, ikey, filler, dkey) values (42, 28218, 00042 string record, 46.2);
+46 --> Query:  insert into da (serial, ikey, filler, dkey) values (43, 14567, 00043 string record, 47.3);
+47 --> Query:  insert into da (serial, ikey, filler, dkey) values (44, 23696, 00044 string record, 48.4);
+48 --> Query:  insert into da (serial, ikey, filler, dkey) values (45, 23421, 00045 string record, 49.5);
+49 --> Query:  insert into da (serial, ikey, filler, dkey) values (46, 15628, 00046 string record, 50.6);
+50 --> Query:  insert into da (serial, ikey, filler, dkey) values (47, 20875, 00047 string record, 51.7);
+51 --> Query:  insert into da (serial, ikey, filler, dkey) values (48, 31859, 00048 string record, 52.8);
+52 --> Query:  insert into da (serial, ikey, filler, dkey) values (49, 21818, 00049 string record, 53.9);
+53 --> Query:  insert into da (serial, ikey, filler, dkey) values (50, 8520, 00050 string record, 55.0);
+54 --> Query:  insert into da (serial, ikey, filler, dkey) values (51, 1013, 00051 string record, 56.1);
+55 --> Query:  insert into da (serial, ikey, filler, dkey) values (52, 2219, 00052 string record, 57.2);
+56 --> Query:  insert into da (serial, ikey, filler, dkey) values (53, 6343, 00053 string record, 58.3);
+57 --> Query:  insert into da (serial, ikey, filler, dkey) values (54, 32185, 00054 string record, 59.4);
+58 --> Query:  insert into da (serial, ikey, filler, dkey) values (55, 24778, 00055 string record, 60.5);
+59 --> Query:  insert into da (serial, ikey, filler, dkey) values (56, 21758, 00056 string record, 61.6);
+60 --> Query:  insert into da (serial, ikey, filler, dkey) values (57, 28512, 00057 string record, 62.7);
+61 --> Query:  insert into da (serial, ikey, filler, dkey) values (58, 2906, 00058 string record, 63.8);
+62 --> Query:  insert into da (serial, ikey, filler, dkey) values (59, 6829, 00059 string record, 64.9);
+63 --> Query:  insert into da (serial, ikey, filler, dkey) values (60, 4978, 00060 string record, 66.0);
+64 --> Query:  insert into da (serial, ikey, filler, dkey) values (61, 27030, 00061 string record, 67.1);
+65 --> Query:  insert into da (serial, ikey, filler, dkey) values (62, 28272, 00062 string record, 68.2);
+66 --> Query:  insert into da (serial, ikey, filler, dkey) values (63, 2853, 00063 string record, 69.3);
+67 --> Query:  insert into da (serial, ikey, filler, dkey) values (64, 21711, 00064 string record, 70.4);
+68 --> Query:  insert into da (serial, ikey, filler, dkey) values (65, 23586, 00065 string record, 71.5);
+69 --> Query:  insert into da (serial, ikey, filler, dkey) values (66, 356, 00066 string record, 72.6);
+70 --> Query:  insert into da (serial, ikey, filler, dkey) values (67, 6732, 00067 string record, 73.7);
+71 --> Query:  insert into da (serial, ikey, filler, dkey) values (68, 5337, 00068 string record, 74.8);
+72 --> Query:  insert into da (serial, ikey, filler, dkey) values (69, 23917, 00069 string record, 75.9);
+73 --> Query:  insert into da (serial, ikey, filler, dkey) values (70, 29025, 00070 string record, 77.0);
+74 --> Query:  insert into da (serial, ikey, filler, dkey) values (71, 30013, 00071 string record, 78.1);
+75 --> Query:  insert into da (serial, ikey, filler, dkey) values (72, 20042, 00072 string record, 79.2);
+76 --> Query:  insert into da (serial, ikey, filler, dkey) values (73, 4059, 00073 string record, 80.3);
+77 --> Query:  insert into da (serial, ikey, filler, dkey) values (74, 2226, 00074 string record, 81.4);
+78 --> Query:  insert into da (serial, ikey, filler, dkey) values (75, 16187, 00075 string record, 82.5);
+79 --> Query:  insert into da (serial, ikey, filler, dkey) values (76, 21137, 00076 string record, 83.6);
+80 --> Query:  insert into da (serial, ikey, filler, dkey) values (77, 17627, 00077 string record, 84.7);
+81 --> Query:  insert into da (serial, ikey, filler, dkey) values (78, 17113, 00078 string record, 85.8);
+82 --> Query:  insert into da (serial, ikey, filler, dkey) values (79, 10658, 00079 string record, 86.9);
+83 --> Query:  insert into da (serial, ikey, filler, dkey) values (80, 24909, 00080 string record, 88.0);
+84 --> Query:  insert into da (serial, ikey, filler, dkey) values (81, 17583, 00081 string record, 89.1);
+85 --> Query:  insert into da (serial, ikey, filler, dkey) values (82, 1646, 00082 string record, 90.2);
+86 --> Query:  insert into da (serial, ikey, filler, dkey) values (83, 7822, 00083 string record, 91.3);
+87 --> Query:  insert into da (serial, ikey, filler, dkey) values (84, 15240, 00084 string record, 92.4);
+88 --> Query:  insert into da (serial, ikey, filler, dkey) values (85, 18172, 00085 string record, 93.5);
+89 --> Query:  insert into da (serial, ikey, filler, dkey) values (86, 8382, 00086 string record, 94.6);
+90 --> Query:  insert into da (serial, ikey, filler, dkey) values (87, 97, 00087 string record, 95.7);
+91 --> Query:  insert into da (serial, ikey, filler, dkey) values (88, 11955, 00088 string record, 96.8);
+92 --> Query:  insert into da (serial, ikey, filler, dkey) values (89, 26641, 00089 string record, 97.9);
+93 --> Query:  insert into da (serial, ikey, filler, dkey) values (90, 24351, 00090 string record, 99.0);
+94 --> Query:  insert into da (serial, ikey, filler, dkey) values (91, 3973, 00091 string record, 100.1);
+95 --> Query:  insert into da (serial, ikey, filler, dkey) values (92, 21349, 00092 string record, 101.2);
+96 --> Query:  insert into da (serial, ikey, filler, dkey) values (93, 9975, 00093 string record, 102.3);
+97 --> Query:  insert into da (serial, ikey, filler, dkey) values (94, 25108, 00094 string record, 103.4);
+98 --> Query:  insert into da (serial, ikey, filler, dkey) values (95, 12837, 00095 string record, 104.5);
+99 --> Query:  insert into da (serial, ikey, filler, dkey) values (96, 31700, 00096 string record, 105.6);
+100 --> Query:  insert into da (serial, ikey, filler, dkey) values (97, 14397, 00097 string record, 106.7);
+101 --> Query:  insert into da (serial, ikey, filler, dkey) values (98, 1574, 00098 string record, 107.8);
+102 --> Query:  insert into da (serial, ikey, filler, dkey) values (99, 17676, 00099 string record, 108.9);
+103 --> Query:  insert into db (serial, ikey, filler, dkey) values (0, 23798, 00000 string record, 0.0);
+104 --> Query:  insert into db (serial, ikey, filler, dkey) values (1, 24529, 00001 string record, 1.1);
+105 --> Query:  insert into db (serial, ikey, filler, dkey) values (2, 1440, 00002 string record, 2.2);
+106 --> Query:  insert into db (serial, ikey, filler, dkey) values (3, 20441, 00003 string record, 3.3);
+107 --> Query:  insert into db (serial, ikey, filler, dkey) values (4, 8210, 00004 string record, 4.4);
+108 --> Query:  insert into db (serial, ikey, filler, dkey) values (5, 31830, 00005 string record, 5.5);
+109 --> Query:  insert into db (serial, ikey, filler, dkey) values (6, 18816, 00006 string record, 6.6);
+110 --> Query:  insert into db (serial, ikey, filler, dkey) values (7, 22849, 00007 string record, 7.7);
+111 --> Query:  insert into db (serial, ikey, filler, dkey) values (8, 28448, 00008 string record, 8.8);
+112 --> Query:  insert into db (serial, ikey, filler, dkey) values (9, 27189, 00009 string record, 9.9);
+113 --> Query:  insert into db (serial, ikey, filler, dkey) values (10, 1479, 00010 string record, 11.0);
+114 --> Query:  insert into db (serial, ikey, filler, dkey) values (11, 15016, 00011 string record, 12.1);
+115 --> Query:  insert into db (serial, ikey, filler, dkey) values (12, 2632, 00012 string record, 13.2);
+116 --> Query:  insert into db (serial, ikey, filler, dkey) values (13, 8696, 00013 string record, 14.3);
+117 --> Query:  insert into db (serial, ikey, filler, dkey) values (14, 20075, 00014 string record, 15.4);
+118 --> Query:  insert into db (serial, ikey, filler, dkey) values (15, 30886, 00015 string record, 16.5);
+119 --> Query:  insert into db (serial, ikey, filler, dkey) values (16, 18654, 00016 string record, 17.6);
+120 --> Query:  insert into db (serial, ikey, filler, dkey) values (17, 32734, 00017 string record, 18.7);
+121 --> Query:  insert into db (serial, ikey, filler, dkey) values (18, 28521, 00018 string record, 19.8);
+122 --> Query:  insert into db (serial, ikey, filler, dkey) values (19, 7696, 00019 string record, 20.9);
+123 --> Query:  insert into db (serial, ikey, filler, dkey) values (20, 16717, 00020 string record, 22.0);
+124 --> Query:  insert into db (serial, ikey, filler, dkey) values (21, 11093, 00021 string record, 23.1);
+125 --> Query:  insert into db (serial, ikey, filler, dkey) values (22, 17557, 00022 string record, 24.2);
+126 --> Query:  insert into db (serial, ikey, filler, dkey) values (23, 17870, 00023 string record, 25.3);
+127 --> Query:  insert into db (serial, ikey, filler, dkey) values (24, 964, 00024 string record, 26.4);
+128 --> Query:  insert into db (serial, ikey, filler, dkey) values (25, 31289, 00025 string record, 27.5);
+129 --> Query:  insert into db (serial, ikey, filler, dkey) values (26, 16930, 00026 string record, 28.6);
+130 --> Query:  insert into db (serial, ikey, filler, dkey) values (27, 26235, 00027 string record, 29.7);
+131 --> Query:  insert into db (serial, ikey, filler, dkey) values (28, 21406, 00028 string record, 30.8);
+132 --> Query:  insert into db (serial, ikey, filler, dkey) values (29, 19402, 00029 string record, 31.9);
+133 --> Query:  insert into db (serial, ikey, filler, dkey) values (30, 31217, 00030 string record, 33.0);
+134 --> Query:  insert into db (serial, ikey, filler, dkey) values (31, 15295, 00031 string record, 34.1);
+135 --> Query:  insert into db (serial, ikey, filler, dkey) values (32, 2962, 00032 string record, 35.2);
+136 --> Query:  insert into db (serial, ikey, filler, dkey) values (33, 5999, 00033 string record, 36.3);
+137 --> Query:  insert into db (serial, ikey, filler, dkey) values (34, 10650, 00034 string record, 37.4);
+138 --> Query:  insert into db (serial, ikey, filler, dkey) values (35, 26988, 00035 string record, 38.5);
+139 --> Query:  insert into db (serial, ikey, filler, dkey) values (36, 6303, 00036 string record, 39.6);
+140 --> Query:  insert into db (serial, ikey, filler, dkey) values (37, 11053, 00037 string record, 40.7);
+141 --> Query:  insert into db (serial, ikey, filler, dkey) values (38, 7483, 00038 string record, 41.8);
+142 --> Query:  insert into db (serial, ikey, filler, dkey) values (39, 13401, 00039 string record, 42.9);
+143 --> Query:  insert into db (serial, ikey, filler, dkey) values (40, 14260, 00040 string record, 44.0);
+144 --> Query:  insert into db (serial, ikey, filler, dkey) values (41, 21990, 00041 string record, 45.1);
+145 --> Query:  insert into db (serial, ikey, filler, dkey) values (42, 29443, 00042 string record, 46.2);
+146 --> Query:  insert into db (serial, ikey, filler, dkey) values (43, 27906, 00043 string record, 47.3);
+147 --> Query:  insert into db (serial, ikey, filler, dkey) values (44, 25123, 00044 string record, 48.4);
+148 --> Query:  insert into db (serial, ikey, filler, dkey) values (45, 31057, 00045 string record, 49.5);
+149 --> Query:  insert into db (serial, ikey, filler, dkey) values (46, 2940, 00046 string record, 50.6);
+150 --> Query:  insert into db (serial, ikey, filler, dkey) values (47, 26588, 00047 string record, 51.7);
+151 --> Query:  insert into db (serial, ikey, filler, dkey) values (48, 5316, 00048 string record, 52.8);
+152 --> Query:  insert into db (serial, ikey, filler, dkey) values (49, 16317, 00049 string record, 53.9);
+153 --> Query:  insert into db (serial, ikey, filler, dkey) values (50, 12956, 00050 string record, 55.0);
+154 --> Query:  insert into db (serial, ikey, filler, dkey) values (51, 8057, 00051 string record, 56.1);
+155 --> Query:  insert into db (serial, ikey, filler, dkey) values (52, 24041, 00052 string record, 57.2);
+156 --> Query:  insert into db (serial, ikey, filler, dkey) values (53, 29061, 00053 string record, 58.3);
+157 --> Query:  insert into db (serial, ikey, filler, dkey) values (54, 19851, 00054 string record, 59.4);
+158 --> Query:  insert into db (serial, ikey, filler, dkey) values (55, 23648, 00055 string record, 60.5);
+159 --> Query:  insert into db (serial, ikey, filler, dkey) values (56, 24069, 00056 string record, 61.6);
+160 --> Query:  insert into db (serial, ikey, filler, dkey) values (57, 9810, 00057 string record, 62.7);
+161 --> Query:  insert into db (serial, ikey, filler, dkey) values (58, 6451, 00058 string record, 63.8);
+162 --> Query:  insert into db (serial, ikey, filler, dkey) values (59, 32426, 00059 string record, 64.9);
+163 --> Query:  insert into db (serial, ikey, filler, dkey) values (60, 10011, 00060 string record, 66.0);
+164 --> Query:  insert into db (serial, ikey, filler, dkey) values (61, 19988, 00061 string record, 67.1);
+165 --> Query:  insert into db (serial, ikey, filler, dkey) values (62, 17801, 00062 string record, 68.2);
+166 --> Query:  insert into db (serial, ikey, filler, dkey) values (63, 17756, 00063 string record, 69.3);
+167 --> Query:  insert into db (serial, ikey, filler, dkey) values (64, 9960, 00064 string record, 70.4);
+168 --> Query:  insert into db (serial, ikey, filler, dkey) values (65, 19902, 00065 string record, 71.5);
+169 --> Query:  insert into db (serial, ikey, filler, dkey) values (66, 31133, 00066 string record, 72.6);
+170 --> Query:  insert into db (serial, ikey, filler, dkey) values (67, 12168, 00067 string record, 73.7);
+171 --> Query:  insert into db (serial, ikey, filler, dkey) values (68, 1999, 00068 string record, 74.8);
+172 --> Query:  insert into db (serial, ikey, filler, dkey) values (69, 11204, 00069 string record, 75.9);
+173 --> Query:  insert into db (serial, ikey, filler, dkey) values (70, 3170, 00070 string record, 77.0);
+174 --> Query:  insert into db (serial, ikey, filler, dkey) values (71, 21282, 00071 string record, 78.1);
+175 --> Query:  insert into db (serial, ikey, filler, dkey) values (72, 13449, 00072 string record, 79.2);
+176 --> Query:  insert into db (serial, ikey, filler, dkey) values (73, 2133, 00073 string record, 80.3);
+177 --> Query:  insert into db (serial, ikey, filler, dkey) values (74, 32318, 00074 string record, 81.4);
+178 --> Query:  insert into db (serial, ikey, filler, dkey) values (75, 17827, 00075 string record, 82.5);
+179 --> Query:  insert into db (serial, ikey, filler, dkey) values (76, 27273, 00076 string record, 83.6);
+180 --> Query:  insert into db (serial, ikey, filler, dkey) values (77, 23896, 00077 string record, 84.7);
+181 --> Query:  insert into db (serial, ikey, filler, dkey) values (78, 32593, 00078 string record, 85.8);
+182 --> Query:  insert into db (serial, ikey, filler, dkey) values (79, 29279, 00079 string record, 86.9);
+183 --> Query:  insert into db (serial, ikey, filler, dkey) values (80, 1840, 00080 string record, 88.0);
+184 --> Query:  insert into db (serial, ikey, filler, dkey) values (81, 16936, 00081 string record, 89.1);
+185 --> Query:  insert into db (serial, ikey, filler, dkey) values (82, 3717, 00082 string record, 90.2);
+186 --> Query:  insert into db (serial, ikey, filler, dkey) values (83, 31399, 00083 string record, 91.3);
+187 --> Query:  insert into db (serial, ikey, filler, dkey) values (84, 31669, 00084 string record, 92.4);
+188 --> Query:  insert into db (serial, ikey, filler, dkey) values (85, 12048, 00085 string record, 93.5);
+189 --> Query:  insert into db (serial, ikey, filler, dkey) values (86, 32090, 00086 string record, 94.6);
+190 --> Query:  insert into db (serial, ikey, filler, dkey) values (87, 31646, 00087 string record, 95.7);
+191 --> Query:  insert into db (serial, ikey, filler, dkey) values (88, 5074, 00088 string record, 96.8);
+192 --> Query:  insert into db (serial, ikey, filler, dkey) values (89, 31877, 00089 string record, 97.9);
+193 --> Query:  insert into db (serial, ikey, filler, dkey) values (90, 25710, 00090 string record, 99.0);
+194 --> Query:  insert into db (serial, ikey, filler, dkey) values (91, 21980, 00091 string record, 100.1);
+195 --> Query:  insert into db (serial, ikey, filler, dkey) values (92, 31535, 00092 string record, 101.2);
+196 --> Query:  insert into db (serial, ikey, filler, dkey) values (93, 6694, 00093 string record, 102.3);
+197 --> Query:  insert into db (serial, ikey, filler, dkey) values (94, 21711, 00094 string record, 103.4);
+198 --> Query:  insert into db (serial, ikey, filler, dkey) values (95, 21188, 00095 string record, 104.5);
+199 --> Query:  insert into db (serial, ikey, filler, dkey) values (96, 11663, 00096 string record, 105.6);
+200 --> Query:  insert into db (serial, ikey, filler, dkey) values (97, 14708, 00097 string record, 106.7);
+201 --> Query:  insert into db (serial, ikey, filler, dkey) values (98, 20993, 00098 string record, 107.8);
+202 --> Query:  insert into db (serial, ikey, filler, dkey) values (99, 17318, 00099 string record, 108.9);
+203 --> Query:  insert into db (serial, ikey, filler, dkey) values (99, 18318, 00099 string record, 108.9);
+204 --> Query:  insert into db (serial, ikey, filler, dkey) values (100, 15805, 00100 string record, 110.0);
+205 --> Query:  select da.serial, da.ikey, da.filler from da, db where da.serial < db.serial;
+Algorithm: Simple NL Join
+serial.  ikey.1  filler.2         
+-------  ------  ---------------  
+0        11618   00000 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+9        21055   00009 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+9        21055   00009 string re  
+10       7648    00010 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+9        21055   00009 string re  
+10       7648    00010 string re  
+11       10153   00011 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+9        21055   00009 string re  
+10       7648    00010 string re  
+11       10153   00011 string re  
+12       31851   00012 string re  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+
+Number of records: 5149
+Buf Stats: accesses = 7256, disk reads = 590, disk writes = 1039
+
+206 --> Query:  select da.serial, da.ikey, da.filler from da, db where da.serial = db.serial;
+Algorithm: SM Join
+serial.  ikey.1  filler.2         
+-------  ------  ---------------  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+9        21055   00009 string re  
+10       7648    00010 string re  
+11       10153   00011 string re  
+12       31851   00012 string re  
+13       25573   00013 string re  
+14       23765   00014 string re  
+15       8758    00015 string re  
+16       18243   00016 string re  
+17       26285   00017 string re  
+18       32157   00018 string re  
+19       21879   00019 string re  
+20       27960   00020 string re  
+21       18894   00021 string re  
+22       3976    00022 string re  
+23       24943   00023 string re  
+24       14177   00024 string re  
+25       18028   00025 string re  
+26       15920   00026 string re  
+27       9143    00027 string re  
+28       20534   00028 string re  
+29       29094   00029 string re  
+30       10397   00030 string re  
+31       22130   00031 string re  
+32       22033   00032 string re  
+33       25436   00033 string re  
+34       3610    00034 string re  
+35       12788   00035 string re  
+36       6504    00036 string re  
+37       32193   00037 string re  
+38       27861   00038 string re  
+39       32049   00039 string re  
+40       65      00040 string re  
+41       8612    00041 string re  
+42       28218   00042 string re  
+43       14567   00043 string re  
+44       23696   00044 string re  
+45       23421   00045 string re  
+46       15628   00046 string re  
+47       20875   00047 string re  
+48       31859   00048 string re  
+49       21818   00049 string re  
+50       8520    00050 string re  
+51       1013    00051 string re  
+52       2219    00052 string re  
+53       6343    00053 string re  
+54       32185   00054 string re  
+55       24778   00055 string re  
+56       21758   00056 string re  
+57       28512   00057 string re  
+58       2906    00058 string re  
+59       6829    00059 string re  
+60       4978    00060 string re  
+61       27030   00061 string re  
+62       28272   00062 string re  
+63       2853    00063 string re  
+64       21711   00064 string re  
+65       23586   00065 string re  
+66       356     00066 string re  
+67       6732    00067 string re  
+68       5337    00068 string re  
+69       23917   00069 string re  
+70       29025   00070 string re  
+71       30013   00071 string re  
+72       20042   00072 string re  
+73       4059    00073 string re  
+74       2226    00074 string re  
+75       16187   00075 string re  
+76       21137   00076 string re  
+77       17627   00077 string re  
+78       17113   00078 string re  
+79       10658   00079 string re  
+80       24909   00080 string re  
+81       17583   00081 string re  
+82       1646    00082 string re  
+83       7822    00083 string re  
+84       15240   00084 string re  
+85       18172   00085 string re  
+86       8382    00086 string re  
+87       97      00087 string re  
+88       11955   00088 string re  
+89       26641   00089 string re  
+90       24351   00090 string re  
+91       3973    00091 string re  
+92       21349   00092 string re  
+93       9975    00093 string re  
+94       25108   00094 string re  
+95       12837   00095 string re  
+96       31700   00096 string re  
+97       14397   00097 string re  
+98       1574    00098 string re  
+99       17676   00099 string re  
+
+Number of records: 101
+Buf Stats: accesses = 487, disk reads = 62, disk writes = 78
+
+207 --> Query:  create index da (serial);
+208 --> Query:  create index db (serial);
+209 --> Query:  select da.serial, da.ikey, da.filler from da, db where da.serial = db.serial;
+Algorithm: Indexed NL Join
+serial.  ikey.1  filler.2         
+-------  ------  ---------------  
+0        11618   00000 string re  
+1        15378   00001 string re  
+2        17233   00002 string re  
+3        19052   00003 string re  
+4        24069   00004 string re  
+5        17188   00005 string re  
+6        28769   00006 string re  
+7        15168   00007 string re  
+8        578     00008 string re  
+9        21055   00009 string re  
+10       7648    00010 string re  
+11       10153   00011 string re  
+12       31851   00012 string re  
+13       25573   00013 string re  
+14       23765   00014 string re  
+15       8758    00015 string re  
+16       18243   00016 string re  
+17       26285   00017 string re  
+18       32157   00018 string re  
+19       21879   00019 string re  
+20       27960   00020 string re  
+21       18894   00021 string re  
+22       3976    00022 string re  
+23       24943   00023 string re  
+24       14177   00024 string re  
+25       18028   00025 string re  
+26       15920   00026 string re  
+27       9143    00027 string re  
+28       20534   00028 string re  
+29       29094   00029 string re  
+30       10397   00030 string re  
+31       22130   00031 string re  
+32       22033   00032 string re  
+33       25436   00033 string re  
+34       3610    00034 string re  
+35       12788   00035 string re  
+36       6504    00036 string re  
+37       32193   00037 string re  
+38       27861   00038 string re  
+39       32049   00039 string re  
+40       65      00040 string re  
+41       8612    00041 string re  
+42       28218   00042 string re  
+43       14567   00043 string re  
+44       23696   00044 string re  
+45       23421   00045 string re  
+46       15628   00046 string re  
+47       20875   00047 string re  
+48       31859   00048 string re  
+49       21818   00049 string re  
+50       8520    00050 string re  
+51       1013    00051 string re  
+52       2219    00052 string re  
+53       6343    00053 string re  
+54       32185   00054 string re  
+55       24778   00055 string re  
+56       21758   00056 string re  
+57       28512   00057 string re  
+58       2906    00058 string re  
+59       6829    00059 string re  
+60       4978    00060 string re  
+61       27030   00061 string re  
+62       28272   00062 string re  
+63       2853    00063 string re  
+64       21711   00064 string re  
+65       23586   00065 string re  
+66       356     00066 string re  
+67       6732    00067 string re  
+68       5337    00068 string re  
+69       23917   00069 string re  
+70       29025   00070 string re  
+71       30013   00071 string re  
+72       20042   00072 string re  
+73       4059    00073 string re  
+74       2226    00074 string re  
+75       16187   00075 string re  
+76       21137   00076 string re  
+77       17627   00077 string re  
+78       17113   00078 string re  
+79       10658   00079 string re  
+80       24909   00080 string re  
+81       17583   00081 string re  
+82       1646    00082 string re  
+83       7822    00083 string re  
+84       15240   00084 string re  
+85       18172   00085 string re  
+86       8382    00086 string re  
+87       97      00087 string re  
+88       11955   00088 string re  
+89       26641   00089 string re  
+90       24351   00090 string re  
+91       3973    00091 string re  
+92       21349   00092 string re  
+93       9975    00093 string re  
+94       25108   00094 string re  
+95       12837   00095 string re  
+96       31700   00096 string re  
+97       14397   00097 string re  
+98       1574    00098 string re  
+99       17676   00099 string re  
+
+Number of records: 101
+Buf Stats: accesses = 294, disk reads = 42, disk writes = 32
+
+210 --> Query:  drop table da;
+211 --> Query:  drop table db;
+212 --> 

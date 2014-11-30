@@ -1,0 +1,58 @@
+
+********************
+***** INTRO ********
+********************
+
+To make sure you are on the right track, we have provided
+some basic sanity check test cases. 
+
+These test cases are NOT comprehensive, and the autograder
+will have hidden test cases that we have not yet tested. 
+
+If there is ANY difference in your output (include page reads etc), 
+there is something likely wrong with your code. Be sure you are not
+adding any extra spaces etc
+
+***************************
+******* INSTRUCTIONS ******
+***************************
+
+We have provided two sets of files:
+- .sql files --> Specify SQL commands to be run
+- .out files --> Specify the output for the corresponding SQL file
+
+To test your project, you are to run the following commands:
+
+1. Run 'make' command to create executables for the project
+2. Create a new database using 'dbcreate'.
+3. Run 'minirel' command with the database you creates
+   and one of the '.sql' files we provided. Be sure to redirect
+   output to a file of your own name
+4. Diff the output of your file with the '.out' file we provided.
+   Be sure to diff with the '.out' file that matches '.sql'
+
+***************************
+****** EXAMPLE USAGE ******
+***************************
+
+Example for running insert_1.sql:
+1. `make`
+2. `./dbcreate myDB`
+3. `./minirel myDB insert_1.sql > my_insert_1.out`
+4. `diff my_insert_1.out insert_1.out`
+
+
+***************************
+***** FILES PROVIDED  *****
+***************************
+
+-- README
+-- insert_1.out
+-- insert_1.sql
+-- insert_2.out
+-- insert_2.sql
+-- joins_1.out
+-- joins_1.sql
+-- select_1.out
+-- select_1.sql
+

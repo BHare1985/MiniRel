@@ -1,0 +1,45 @@
+Welcome to Minirel
+1 --> Query:  create table soaps(soapid integer, name char(32), network char(4), rating double);
+2 --> Query:  create index soaps (soapid);
+3 --> Query:  create index soaps (rating);
+4 --> Query:  insert into soaps (soapid, name, network, rating) values (100, Gilmore Girls, CBS, 9.67);
+5 --> Query:  insert into soaps (network, rating, name, soapid) values (ABC, 3.35, Loving, 101);
+6 --> Query:  select * from soaps;
+Algorithm: File Scan
+soapid.  name.1           network.2  rating.  
+-------  ---------------  ---------  -------  
+100      Gilmore Girls    CBS        9.67     
+101      Loving           ABC        3.35     
+
+Number of records: 2
+Buf Stats: accesses = 54, disk reads = 5, disk writes = 7
+
+7 --> Query:  select * from soaps where soaps.soapid = 100;
+Algorithm: Index Select
+soapid.  name.1           network.2  rating.  
+-------  ---------------  ---------  -------  
+100      Gilmore Girls    CBS        9.67     
+
+Number of records: 1
+Buf Stats: accesses = 57, disk reads = 7, disk writes = 8
+
+8 --> Query:  select soaps.soapid, soaps.name, soaps.network from soaps where soaps.soapid = 100;
+Algorithm: Index Select
+soapid.  name.1           network.2  
+-------  ---------------  ---------  
+100      Gilmore Girls    CBS        
+
+Number of records: 1
+Buf Stats: accesses = 49, disk reads = 7, disk writes = 8
+
+9 --> Query:  select soaps.soapid, soaps.network from soaps where soaps.soapid = 101;
+Algorithm: Index Select
+soapid.  network.1  
+-------  ---------  
+101      ABC        
+
+Number of records: 1
+Buf Stats: accesses = 43, disk reads = 7, disk writes = 8
+
+10 --> Query:  drop table soaps;
+11 --> 
