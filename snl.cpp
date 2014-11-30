@@ -26,6 +26,7 @@ Status Operators::SNL(const string& result,           // Output relation name
 	void* record_data = NULL;
 	HeapFile* heap_file = NULL;
 	HeapFileScan* heap_scan1 = NULL;
+	HeapFileScan* heap_scan2 = NULL;
 	
 	try {
 
@@ -36,27 +37,33 @@ Status Operators::SNL(const string& result,           // Output relation name
 		heap_scan1 = new HeapFileScan(attrDesc2.relName, status);
 		if(!heap_scan1) throw INSUFMEM;
 		if(status != OK) throw status;
-	
+
+		heap_scan2 = new HeapFileScan(attrDesc1.relName, status);
+		if(!heap_scan2) throw INSUFMEM;
+		if(status != OK) throw status;
+
+		record_data = operator new(reclen);
+		if(!record_data) throw INSUFMEM;
+			
 		while((status = heap_scan1->scanNext(rid1, record1)) == OK) {
+		
+			
 			char *filter = ((char*)record1.data) + attrDesc2.attrOffset;
       
-			HeapFileScan* heap_scan2 = new HeapFileScan(
-								attrDesc1.relName,
-								attrDesc1.attrOffset,
-								attrDesc1.attrLen,
-								static_cast<Datatype>(attrDesc1.attrType),
-								filter,
-								op,
-								status
-						);
-						
-			if(!heap_scan2) throw INSUFMEM;
+			// Start a new scan, this will reuse the same heapfile so 
+			// it doesnt have to keep deconstructing the HeapFile Obj
+			status = heap_scan2->startScan(
+					attrDesc1.attrOffset,
+					attrDesc1.attrLen,
+					static_cast<Datatype>(attrDesc1.attrType),
+					filter,
+					op
+			);
 			if(status != OK) throw status;
 			
-			
+
 			while((status = heap_scan2->scanNext(rid2, record2)) == OK) {
-				record_data = operator new(reclen);
-				if(!record_data) throw INSUFMEM;
+
 				
 				int offset = 0;
 				for(int i = 0; i < projCnt; ++i) {
@@ -77,17 +84,12 @@ Status Operators::SNL(const string& result,           // Output relation name
 				Record joined_record = {record_data, reclen};
 				status = heap_file->insertRecord(joined_record, joined_rid);
 				if(status != OK) throw status;
-				
-				// clear memory
-				operator delete(record_data);
 			}
 			if (status != FILEEOF) throw status;
 			
 			status = heap_scan2->endScan();
 			if(status != OK) throw status;
 			
-			// Clear memory
-			delete heap_scan2;
 		}
 		if (status != FILEEOF) throw status;
 
@@ -97,13 +99,13 @@ Status Operators::SNL(const string& result,           // Output relation name
 		// no exceptions thrown, so status is OK
 		status = OK;
 	} catch (Status s) {
-		if(record_data) operator delete(record_data);
 		status = s;
 	}
 
 	// Free memory
+	if(record_data) operator delete(record_data);
 	if(heap_file) delete heap_file;
 	if(heap_scan1) delete heap_scan1;
-
+	if(heap_scan2) delete heap_scan2;
 	return status;
 }

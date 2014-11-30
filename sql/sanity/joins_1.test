@@ -309,7 +309,7 @@ serial.  ikey.1  filler.2
 8        578     00008 string re  
 
 Number of records: 5149
-Buf Stats: accesses = 7356, disk reads = 1658, disk writes = 1140
+Buf Stats: accesses = 7255, disk reads = 565, disk writes = 1039
 
 206 --> Query:  select da.serial, da.ikey, da.filler from da, db where da.serial = db.serial;
 Algorithm: SM Join
