@@ -417,7 +417,7 @@ serial.  ikey.1  filler.2
 99       17676   00099 string re  
 
 Number of records: 101
-Buf Stats: accesses = 518, disk reads = 75, disk writes = 112
+Buf Stats: accesses = 502, disk reads = 75, disk writes = 112
 
 207 --> Query:  create index da (serial);
 208 --> Query:  create index db (serial);

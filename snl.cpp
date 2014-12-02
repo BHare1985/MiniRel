@@ -47,7 +47,6 @@ Status Operators::SNL(const string& result,           // Output relation name
 			
 		while((status = heap_scan1->scanNext(rid1, record1)) == OK) {
 		
-			
 			char *filter = ((char*)record1.data) + attrDesc2.attrOffset;
       
 			// Start a new scan, this will reuse the same heapfile so 
@@ -60,16 +59,11 @@ Status Operators::SNL(const string& result,           // Output relation name
 					op
 			);
 			if(status != OK) throw status;
-			
 
 			while((status = heap_scan2->scanNext(rid2, record2)) == OK) {
-
-				
 				int offset = 0;
 				for(int i = 0; i < projCnt; ++i) {
 					void* data = NULL;
-
-					//printf("%s %s %d %d %d \n", attrDescArray[i].relName, attrDescArray[i].attrName, attrDescArray[i].attrOffset, attrDescArray[i].attrType, attrDescArray[i].attrLen);
 
 					if(strcmp(attrDescArray[i].relName, attrDesc1.relName) == 0) {
 						data = (char*)record2.data + attrDescArray[i].attrOffset;
