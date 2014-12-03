@@ -22,19 +22,44 @@ Status Operators::SMJ(const string& result,           // Output relation name
     string rel_name_1 = attrDesc1.relName;
     string rel_name_2 = attrDesc2.relName;    
     Record record_1, record_2;
+    AttrDesc* rel0;
+    AttrDesc* rel1;
+    AttrDesc* rel2;
     
-    int k_1 = 0.8 * bufMgr->numUnpinnedPages(); //how many pages in the buffer pool we can use to sort
+    int size_1=0, size_2=0, num=0; 
+    
+    //get k value:
+    int k = 0.8 * bufMgr->numUnpinnedPages(); //how many pages in the buffer pool we can use to sort
+    
+    //get datatypes
     Datatype type_1 = static_cast<Datatype>(attrDesc1.attrType); //datatype attr1
-    
-    int k_2 = 0.8 * bufMgr->numUnpinnedPages(); //how many pages in the buffer pool we can use to sort
     Datatype type_2 = static_cast<Datatype>(attrDesc2.attrType); //datatype attr2
     
-    //open rel 1 sorted file
-    SortedFile file_1(rel_name_1, attrDesc1.attrOffset, attrDesc1.attrLen, type_1, k_1, status);
-    if(status != OK) return status;
+    //get the max # of tuples for each relation
+    status = attrCat->getRelInfo(result, num, rel0); 
+    if (status != OK) return status;
     
+    status = attrCat->getRelInfo(attrDesc1.relName, num, rel1);
+    if (status != OK) return status;
+    for (int i=0; i < num; i++) {
+    	size_1 = size_1 + rel1[i].attrLen;
+    }
+
+    status = attrCat->getRelInfo(attrDesc2.relName, num, rel2);
+    if (status != OK) return status; 
+    for(int i=0; i < num; i++) {
+    	size_2 = size_2 + rel2[i].attrLen;
+    }
+    
+    //open rel 1 sorted file
+    SortedFile file_1(rel_name_1, attrDesc1.attrOffset, attrDesc1.attrLen, type_1, (k * 1024) / size_1, status);
+    if(status != OK) return status;
+
+    k = .8 * bufMgr->numUnpinnedPages(); //recalculate k value
+
     //open rel 2 sorted file
-    SortedFile file_2(rel_name_2, attrDesc2.attrOffset, attrDesc2.attrLen, type_2, k_2, status);
+    SortedFile file_2(rel_name_2, attrDesc2.attrOffset, attrDesc2.attrLen, type_2, (k * 1024) / size_2, status);
+    
     if(status != OK) return status;
 
     //open result heap file to insert into later
@@ -44,8 +69,9 @@ Status Operators::SMJ(const string& result,           // Output relation name
     //scan through the sorted files now:
     status_1 = file_1.next(record_1);
     status_2 = file_2.next(record_2);
-    int compareNum = 0;
     
+    //variables used for when a mark is used so that more reads/writes are not used
+    int compareNum = 0;
     bool goToMark = false;
     int numEqual = 0;
     
@@ -97,7 +123,7 @@ Status Operators::SMJ(const string& result,           // Output relation name
                     status = heap_file.insertRecord(rec, rec_rid); //insert record into result heap file
                     delete [] rec_data; //data cleanup
                     if(status != OK) return status;
-                    //cout << "inserted : " << rec_data << endl;
+
                     
 	                status_2 = file_2.next(record_2); //get next record from file 2
 	                if(status_2 != OK) break;                
@@ -138,7 +164,7 @@ Status Operators::SMJ(const string& result,           // Output relation name
                     status = heap_file.insertRecord(rec, rec_rid); //insert record into result heap file
                     delete [] rec_data; //data cleanup
                     if(status != OK) return status;
-                    //cout << "inserted : " << rec_data << endl;
+
 	                status_2 = file_2.next(record_2); //get next record from file 2
 	                if(status_2 != OK) break;
 	                go = (matchRec(record_1, record_2, attrDesc1, attrDesc2) == 0);
