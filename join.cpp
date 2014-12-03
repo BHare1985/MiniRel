@@ -59,6 +59,8 @@ Status Operators::Join(const string& result,           // Name of the output rel
 		equi_join = (op == EQ) ? true : false;
 		indices_exist = (left_attr.indexed || right_attr.indexed) ? true : false;
 		
+		// If not an equijoin, pick SNL
+		// If equijoin and indices exist then do INL, otherwise SMJ
 		if(equi_join) {
 			if(indices_exist) {
 				status = INL(result, projCnt, projList, left_attr, op, right_attr, record_length);
@@ -68,7 +70,6 @@ Status Operators::Join(const string& result,           // Name of the output rel
 		} else {
 			status = SNL(result, projCnt, projList, left_attr, op, right_attr, record_length);
 		}
-		
 		if(status != OK) throw status;
 		
 		// no exceptions thrown, so status is OK

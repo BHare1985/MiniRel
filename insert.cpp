@@ -21,6 +21,7 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 	void* record_mem = NULL;
 	
 	try {
+		// Open heap file
 		HeapFile heap(relation, status);
 		if(status != OK) throw status;
 
@@ -56,6 +57,7 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 			}
 		}
 		
+		// Throw error if not inserting the exact amount of attributes
 		if(inserted != attrCnt) throw ATTRNOTFOUND;
 		
 		record.data = record_mem;

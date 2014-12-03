@@ -42,8 +42,9 @@ Status Operators::Select(const string & result,      // name of the output relat
 		}
 
 		conditional = (attr == NULL) ? false : true;
-		equality = (op == EQ || op == NE) ? true : false;
+		equality = (op == EQ) ? true : false;
 		
+		// If this is a conditional selection get the attribute info
 		if(conditional) {
 			attrs = new AttrDesc;
 			status = attrCat->getInfo(attr->relName, attr->attrName, *attrs);
@@ -51,6 +52,8 @@ Status Operators::Select(const string & result,      // name of the output relat
 		}
 		
 		
+		// If it is a conditional selection, index exists on attribute in the predicate and equality predicate
+		// then use IndexSelect (indexselect.cpp) otherwise ScanSelect (scanselect.cpp)
 		if(conditional && attrs->indexed && equality) {
 			status = IndexSelect(result, projCnt, projList, attrs, op, attrValue, record_length);
 			if(status != OK) throw status;
