@@ -52,8 +52,8 @@ Status Operators::SNL(const string& result,           // Output relation name
 			
 		while((status = heap_scan1->scanNext(rid1, record1)) == OK) {
 		
-			char *filter = ((char*)record1.data) + attrDesc2.attrOffset;
-      
+			char *filter = ((char*)record1.data) + attrDesc1.attrOffset;
+			
 			// Start a new scan, this will reuse the same heapfile so 
 			// it doesnt have to keep deconstructing the HeapFile Obj
 			status = heap_scan2->startScan(

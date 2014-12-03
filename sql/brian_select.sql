@@ -18,13 +18,23 @@ SELECT * FROM stars WHERE stars.starid > 0;
 SELECT stars.soapid FROM stars WHERE stars.starid > 0;
 SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid > 0;
 
+-- Check all non equalities
+SELECT stars.soapid FROM stars WHERE stars.starid > 0;
+SELECT stars.soapid FROM stars WHERE stars.starid >= 1;
+SELECT stars.soapid FROM stars WHERE stars.starid < 5;
+SELECT stars.soapid FROM stars WHERE stars.starid <= 4;
+
+-- Check conditional, no index, fake-equality
+SELECT * FROM stars WHERE stars.starid <> 1;
+SELECT stars.soapid FROM stars WHERE stars.starid <> 1;
+SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid <> 1;
+
+
 -- Check conditional, no index, equality
 SELECT * FROM stars WHERE stars.starid = 1;
 SELECT stars.soapid FROM stars WHERE stars.starid = 1;
 SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid = 1;
-SELECT * FROM stars WHERE stars.starid <> 1;
-SELECT stars.soapid FROM stars WHERE stars.starid <> 1;
-SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid <> 1;
+
 
 
 CREATE INDEX stars(starid);
@@ -45,13 +55,17 @@ SELECT stars.soapid FROM stars WHERE stars.starid >= 1;
 SELECT stars.soapid FROM stars WHERE stars.starid < 5;
 SELECT stars.soapid FROM stars WHERE stars.starid <= 4;
 
+-- Check conditional, index, fake-equality
+SELECT * FROM stars WHERE stars.starid <> 1;
+SELECT stars.soapid FROM stars WHERE stars.starid <> 1;
+SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid <> 1;
+
+
 -- Check conditional, index, equality
 SELECT * FROM stars WHERE stars.starid = 1;
 SELECT stars.soapid FROM stars WHERE stars.starid = 1;
 SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid = 1;
-SELECT * FROM stars WHERE stars.starid <> 1;
-SELECT stars.soapid FROM stars WHERE stars.starid <> 1;
-SELECT stars.real_name, stars.soapid FROM stars WHERE stars.starid <> 1;
+
 
 
 DROP TABLE stars;
