@@ -33,8 +33,7 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 		// If the relational attr count isn't equal to attr count specified
 		// This handles if no value is specified and # attr is right
 		if (real_attrCnt != attrCnt) throw ATTRTYPEMISMATCH;
-
-
+		
 		// Get the size in bytes the record should be
 		for (int i = 0; i < attrCnt; ++i) {
 			record_size += attrs[i].attrLen;
@@ -49,6 +48,15 @@ Status Updates::Insert(const string& relation,      // Name of the relation
 			for (int j = 0; j < attrCnt; ++j) {
 				// Ensures in correct order according to attrs
 				if(strcmp(attrList[j].attrName, attrs[i].attrName) == 0) {
+				
+					// Throw error if the value to be inserted is larger than the
+					// length it allows, as per https://piazza.com/class/hzcwxwdhmhv5r0?cid=1118
+					if(attrList[j].attrType == STRING) {
+						if(strlen((char*)attrList[j].attrValue) > attrs[i].attrLen) {
+							throw ATTRTYPEMISMATCH;
+						}
+					}
+				
 					void* insert_location = (char*)record_mem + attrs[i].attrOffset;
 					memcpy(insert_location, attrList[j].attrValue, attrs[i].attrLen);
 					inserted++;
